@@ -16,7 +16,7 @@
 # 3. Run on the server:
 #
 #       # Replace this URL by your own that has your pubkey in
-#       curl -L https://raw.githubusercontent.com/nix-community/nixos-install-scripts/master/hosters/hetzner-cloud/nixos-install-hetzner-cloud.sh | sudo bash
+#       curl -L https://raw.githubusercontent.com/emelie-qis/nixos-install-scripts/master/hosters/hetzner-cloud/nixos-install-hetzner-cloud.sh | sudo bash
 #
 #    This will install NixOS and power off the server.
 # 4. Unmount the ISO image from the Hetzner Cloud GUI.
@@ -63,6 +63,10 @@ echo '
   services.openssh.permitRootLogin = "prohibit-password";
 
   services.openssh.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
 
   users.users.root.openssh.authorizedKeys.keys = [
     # Replace this by your SSH pubkey!
